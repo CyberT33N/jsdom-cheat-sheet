@@ -4,7 +4,7 @@ jsdom cheat sheet with the most needed stuff..
 <br>
 <br>
 
-# Usage
+# install
 ```javascript
 // CJS
 const jsdom = require("jsdom");
@@ -15,6 +15,25 @@ import jsdom from 'jsdom';
 const { JSDOM } = jsdom;
 ```
 
+
+
+<br>
+<br>
+
+ _____________________________________________________
+ _____________________________________________________
+ 
+
+<br>
+<br>
+
+# Usage
+
+```javascript
+const jsdom = require("jsdom");
+const dom = new JSDOM(`<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>`);
+console.log(dom.window.document.getElementById("main").textContent);
+```
 
 <br>
 <br>
