@@ -30,7 +30,6 @@ const { JSDOM } = jsdom;
 # Usage
 
 ```javascript
-const jsdom = require("jsdom");
 const dom = new JSDOM(`<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>`);
 console.log(dom.window.document.getElementById("main").textContent);
 ```
