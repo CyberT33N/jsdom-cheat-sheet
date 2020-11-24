@@ -17,15 +17,42 @@ const { JSDOM } = jsdom;
 
 
 
-<br>
-<br>
-
+<br><br>
  _____________________________________________________
  _____________________________________________________
- 
+<br><br>
 
-<br>
-<br>
+# window
+
+## Access global variables
+```javascript
+const load = name => new Promise( resolve => { log( 'LOAD - name: ' + name );
+    name.onload = () => resolve(true);
+});
+
+var dom = new JSDOM(`
+  <!DOCTYPE html>
+  <script>window.test = true</script>
+`,
+ { runScripts: "dangerously",
+    url: link,
+    resources: 'usable',
+    virtualConsole
+  });
+  
+  global.window = dom.window;
+  global.document = dom.window.document;
+
+  await load(dom.window);
+  console.log("test: " + window.test);
+```
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
 
 # Usage
 
