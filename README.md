@@ -64,6 +64,48 @@ var dom = new JSDOM(`
 ```
 
 
+## Access global variables from external files
+```javascript
+// test.js
+const getUserDetails = async (token)=>{ console.log( 'getUserDetails() - token: ' + token + '\nHost: ' + window.location.origin );
+  return await axios.post(  window.location.origin + '/api/getUserDetails', { usertoken: token  }, {
+    headers: { authorization: 'sample_auth_token..' }
+  });
+};
+```
+
+```javascript
+var dom = new JSDOM(`
+  <!DOCTYPE html>
+  <script>
+    <script src="js/test.js"></script>
+
+     <script>
+      (async () => {
+        window.getUserDetails = getUserDetails;
+      })().catch((e) => {
+        console.log('Error:' +  e )
+      });
+      </script>
+`,
+ { runScripts: "dangerously",
+    url: link,
+    resources: 'usable',
+    virtualConsole
+  });
+  
+  global.window = dom.window;
+  global.document = dom.window.document;
+
+  await load(window);
+  console.log("test: " + window.test);
+  
+  const r = await window.getUserDetails('sample_token');
+  console.log('result: ' + JSON.stringify(r, null, 4));
+
+```
+
+
 
 <br>
 <br>
