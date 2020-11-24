@@ -99,17 +99,46 @@ const r = await window.getUserDetails('sample_token');
 console.log('result: ' + JSON.stringify(r, null, 4));
 ```
 
+<br><br>
+## Running code inside the jsdom context
+```javascript
+const { window } = new JSDOM(``, { runScripts: "outside-only" });
+
+window.eval(`
+  // This code executes in the jsdom global scope
+  globalVariable = typeof XMLHttpRequest === "function";
+`);
+
+assert(window.globalVariable === true);
+```
 
 
-<br>
-<br>
+<br><br>
 
+## Load local js file and make unit test
+```javascript
+const { JSDOM } = require("jsdom");
+const myLibrary = fs.readFileSync("../../whatever.js", { encoding: "utf-8" });
+
+let window;
+beforeEach(() => {
+  window = (new JSDOM(``, { runScripts: "dangerously" })).window;
+
+  // Execute my library by inserting a <script> tag containing it.
+  const scriptEl = window.document.createElement("script");
+  scriptEl.textContent = myLibrary;
+  window.document.body.appendChild(scriptEl);
+});
+
+it("should do the right thing", () => {
+  assert.equal(window.myLibrary.doThing("foo"), "bar");
+});
+```
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
- 
-
-<br>
-<br>
+<br><br>
 
 
 # virtualConsole
