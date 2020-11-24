@@ -43,7 +43,7 @@ var dom = new JSDOM(`
   global.window = dom.window;
   global.document = dom.window.document;
 
-  await load(dom.window);
+  await load(window);
   console.log("test: " + window.test);
 ```
 
