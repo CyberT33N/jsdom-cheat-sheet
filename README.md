@@ -1,12 +1,11 @@
 # jsdom cheat sheet
 jsdom cheat sheet with the most needed stuff..
 
-<br>
-<br>
-**ESM**: FALSE 
+<br><br>
 
-<br>
-<br>
+- **ESM:** FALSE 
+
+<br><br>
 
 # install
 ```javascript
