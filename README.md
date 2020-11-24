@@ -77,6 +77,7 @@ const getUserDetails = async (token)=>{ console.log( 'getUserDetails() - token: 
 ```javascript
 var dom = new JSDOM(`
   <!DOCTYPE html>
+  <script src="js/lib/axios.min.js"></script>
   <script src="js/test.js"></script>
   <script> window.getUserDetails = getUserDetails; </script>`,
  { runScripts: "dangerously",
