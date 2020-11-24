@@ -3,6 +3,10 @@ jsdom cheat sheet with the most needed stuff..
 
 <br>
 <br>
+**ESM**: FALSE 
+
+<br>
+<br>
 
 # install
 ```javascript
