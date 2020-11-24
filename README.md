@@ -77,32 +77,16 @@ const getUserDetails = async (token)=>{ console.log( 'getUserDetails() - token: 
 ```javascript
 var dom = new JSDOM(`
   <!DOCTYPE html>
-  <script>
-    <script src="js/test.js"></script>
-
-     <script>
-      (async () => {
-        window.getUserDetails = getUserDetails;
-      })().catch((e) => {
-        console.log('Error:' +  e )
-      });
-      </script>
-`,
+  <script src="js/test.js"></script>
+  <script> window.getUserDetails = getUserDetails; </script>`,
  { runScripts: "dangerously",
     url: link,
     resources: 'usable',
     virtualConsole
-  });
+});
   
-  global.window = dom.window;
-  global.document = dom.window.document;
-
-  await load(window);
-  console.log("test: " + window.test);
-  
-  const r = await window.getUserDetails('sample_token');
-  console.log('result: ' + JSON.stringify(r, null, 4));
-
+const r = await window.getUserDetails('sample_token');
+console.log('result: ' + JSON.stringify(r, null, 4));
 ```
 
 
