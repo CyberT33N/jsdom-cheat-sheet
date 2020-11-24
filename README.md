@@ -17,6 +17,22 @@ const { JSDOM } = jsdom;
 
 
 
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# Usage
+
+```javascript
+const dom = new JSDOM(`<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>`);
+console.log(dom.window.document.getElementById("main").textContent);
+```
+
+
+
 <br><br>
  _____________________________________________________
  _____________________________________________________
@@ -48,18 +64,6 @@ var dom = new JSDOM(`
 ```
 
 
-<br><br>
- _____________________________________________________
- _____________________________________________________
-<br><br>
-
-
-# Usage
-
-```javascript
-const dom = new JSDOM(`<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>`);
-console.log(dom.window.document.getElementById("main").textContent);
-```
 
 <br>
 <br>
