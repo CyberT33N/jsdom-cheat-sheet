@@ -75,6 +75,10 @@ const getUserDetails = async (token)=>{ console.log( 'getUserDetails() - token: 
 ```
 
 ```javascript
+const load = name => new Promise( resolve => { log( 'LOAD - name: ' + name );
+    name.onload = () => resolve(true);
+});
+
 var dom = new JSDOM(`
   <!DOCTYPE html>
   <script src="js/lib/axios.min.js"></script>
@@ -85,6 +89,11 @@ var dom = new JSDOM(`
     resources: 'usable',
     virtualConsole
 });
+
+global.window = dom.window;
+global.document = dom.window.document;
+
+await load(window);
   
 const r = await window.getUserDetails('sample_token');
 console.log('result: ' + JSON.stringify(r, null, 4));
